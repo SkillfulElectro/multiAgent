@@ -64,7 +64,7 @@ while True:
   temp = [search_prompt]
     
   try:
-      response = client.chat.completions.create(model="llama3-70b-8192",
+      response = client.chat.completions.create(model="llama3-8b-8192",
                                                 messages=temp,
                                                 max_tokens=2048,
                                                 temperature=0)
