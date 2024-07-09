@@ -95,19 +95,34 @@ while True:
     
   page_texts = web_search(search_text)
   for text in page_texts:
-    chat_history.append({"role": "system", "content": text})
+      if len(text) < 2048:
+        chat_history.append({"role": "system", "content": text})
 
   # Append the user input to the chat history
 
 
-  system_prompt = {
+  
+
+
+  try:
+    system_prompt = {
     "role": "system",
     "content":
-    "based on provided search results answer very detailed to " + user_input
+    "based on provided search results answer very detailed to : " + user_input
   }
 
-  chat_history.append(system_prompt)
+    chat_history.append(system_prompt)
 
+      
+    response = client.chat.completions.create(model="llama3-8b-8192",
+                                                messages=chat_history,
+                                                max_tokens=2048,
+                                                temperature=0)
+    
+    
+      
+  except:
+    print("Manager : small err")
 
 
   system_prompt = {
@@ -119,22 +134,6 @@ while True:
   
 
   
-  try:
-      response = client.chat.completions.create(model="llama3-8b-8192",
-                                                messages=chat_history,
-                                                max_tokens=2048,
-                                                temperature=0)
-        
-      chat_history.append({
-          "role": "assistant",
-          "content": response.choices[0].message.content
-      })
-    
-      
-      chat_history.append(system_prompt)
-
-  except:
-      print("Manager : small err")
 
 
   try:    
