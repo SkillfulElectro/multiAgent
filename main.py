@@ -94,9 +94,14 @@ while True:
   chat_history.append(system_prompt)
     
   page_texts = web_search(search_text)
-  for text in page_texts:
-      if len(text) < 2048:
-        chat_history.append({"role": "system", "content": text})
+  for text in page_texts:
+    if len(text) >= 2048:
+      for i in range(0, len(text), 2048):
+        chunk = text[i:i + 2048]
+        chat_history.append({"role": "system", "content": chunk})
+    else:
+      chat_history.append({"role": "system", "content": text})
+
 
   # Append the user input to the chat history
 
