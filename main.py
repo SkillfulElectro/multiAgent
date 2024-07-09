@@ -131,7 +131,7 @@ while True:
     "check previous assistant prompt if it does answer needs of \"" + user_input + "\" currently give exactly same" + "answer as it , if not correct it give the complete answer"
 }
 
-  
+  chat_history.append(system_prompt)
 
   
 
