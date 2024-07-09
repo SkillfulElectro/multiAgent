@@ -108,19 +108,6 @@ while True:
 
   chat_history.append(system_prompt)
 
-  try:
-      response = client.chat.completions.create(model="llama3-70b-8192",
-                                                messages=chat_history,
-                                                max_tokens=2048,
-                                                temperature=0)
-    
-      chat_history.append({
-          "role": "assistant",
-          "content": response.choices[0].message.content
-      })
-
-  except:
-     print("Manager : small err ")  
 
 
   system_prompt = {
@@ -129,7 +116,7 @@ while True:
     "check previous assistant prompt if it does answer needs of \"" + user_input + "\" currently give exactly same" + "answer as it , if not correct it give the complete answer"
 }
 
-  chat_history.append(system_prompt)
+  
 
   
   try:
