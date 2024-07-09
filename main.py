@@ -128,7 +128,7 @@ while True:
   system_prompt = {
     "role": "system",
     "content":
-    "check previous assistant prompt if it does answer needs of \"" + user_input + "\" currently give exactly same" + "answer as it , if not correct it give the complete answer"
+    "check previous assistant prompt if it does answer needs of \"" + user_input + "\" currently give exactly same" + "answer as it , if not correct it give the complete answer . Your answer must be independent"
 }
 
   chat_history.append(system_prompt)
