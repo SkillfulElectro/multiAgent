@@ -98,9 +98,9 @@ while True:
     if len(text) >= 2048:
       for i in range(0, len(text), 2048):
         chunk = text[i:i + 2048]
-        chat_history.append({"role": "system", "content": chunk})
+        chat_history.append({"role": "googlesearch", "content": chunk})
     else:
-      chat_history.append({"role": "system", "content": text})
+      chat_history.append({"role": "googlesearch", "content": text})
 
 
   # Append the user input to the chat history
@@ -123,6 +123,10 @@ while True:
                                                 messages=chat_history,
                                                 max_tokens=2048,
                                                 temperature=0)
+    chat_history.append({
+          "role": "system",
+          "content": response.choices[0].message.content
+      })
     
     
       
